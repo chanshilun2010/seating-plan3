@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by shi lun chan</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seating Plan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="controls">
+        <input type="number" id="rows" placeholder="Rows" min="1">
+        <input type="number" id="columns" placeholder="Columns" min="1">
+        <input type="text" id="className" placeholder="Class Name">
+        <button onclick="createSeatingPlan()">Create Seating Plan</button>
+        <button onclick="saveSeatingPlan()">Save Seating Plan</button>
+        <button onclick="resetComments()">Reset Comments</button>
+        <select id="classSelect" onchange="loadSelectedClass()">
+            <option value="">Select Class</option>
+        </select>
+    </div>
+    <div id="seatingPlan"></div>
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
