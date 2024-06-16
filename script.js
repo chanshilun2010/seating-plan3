@@ -1,6 +1,53 @@
 // script.js
 let seatingPlan = {};
+// Firebase Initialization
+var firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+  measurementId: "YOUR_MEASUREMENT_ID"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
+// Function to save seating plan
+function saveSeatingPlan() {
+  const seatingPlan = document.getElementById('seatingPlanInput').value;
+  db.collection('seatingPlans').doc('current').set({
+    plan: seatingPlan
+  }).then(() => {
+    console.log('Seating plan saved!');
+  }).catch((error) => {
+    console.error('Error saving seating plan: ', error);
+  });
+}
+
+// Function to retrieve seating plan
+function getSeatingPlan() {
+  db.collection('seatingPlans').doc('current').get().then((doc) => {
+    if (doc.exists) {
+      console.log('Seating plan data:', doc.data());
+      updateUI(doc.data().plan);
+    } else {
+      console.log('No seating plan found!');
+    }
+  }).catch((error) => {
+    console.error('Error getting seating plan: ', error);
+  });
+}
+
+// Call getSeatingPlan on page load
+window.onload = function() {
+  getSeatingPlan();
+}
+
+// Function to update UI with the retrieved seating plan
+function updateUI(seatingPlan) {
+  document.getElementById('seatingPlanInput').value = seatingPlan;
+}
 function createSeatingPlan() {
     const rows = document.getElementById('rows').value;
     const columns = document.getElementById('columns').value;
